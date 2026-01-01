@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const socialLinks = [
   {
@@ -9,7 +9,7 @@ const socialLinks = [
   },
   {
     icon: Linkedin,
-    href: "https://linkedin.com",
+    href: "https://linkedin.com/in/arnavtrivedi2004",
     label: "LinkedIn",
   },
   {
@@ -60,9 +60,7 @@ export const Footer = () => {
             viewport={{ once: true }}
             className="text-sm text-muted-foreground flex items-center gap-1"
           >
-            © {currentYear} Arnav. Built with
-            <Heart size={14} className="text-primary fill-primary" />
-            in India.
+            © {currentYear} Arnav. Engineered, not assembled.
           </motion.p>
         </div>
       </div>
