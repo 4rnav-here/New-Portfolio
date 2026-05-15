@@ -12,7 +12,7 @@ export function Titlebar() {
 
       {/* Title */}
       <span className="text-xs text-text-muted font-mono tracking-wide">
-        antigravity : portfolio
+        arnavtrivedi : portfolio
       </span>
 
       {/* Theme toggle */}
