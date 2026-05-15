@@ -18,7 +18,7 @@ stats:
 socials:
   github: "https://github.com/4rnav-here"
   linkedin: "https://linkedin.com/in/arnavtrivedi2004"
-  email: "arnav@example.com"
+  email: "arnavtrivediofficial@gmail.com"
 projects:
   - title: "ATS Score Checker"
     description: "AI-powered resume analyzer using NLP, TF-IDF keyword matching, and Sentence-BERT semantic similarity. Includes a Telegram bot for on-the-go resume analysis and intelligent job search alerts."
@@ -95,7 +95,7 @@ experience:
 
 ## About Me
 
-I'm **Arnav Sarkar**, a Computer Science undergraduate at **Vellore Institute of Technology** who is passionate about building things that work — and work well.
+I'm **Arnav Trivedi**, a Computer Science undergraduate at **Vellore Institute of Technology** who is passionate about building things that work — and work well.
 
 My journey spans the full spectrum of modern development: from crafting responsive frontends with **React** and **Next.js**, to architecting backend services with **Node.js**, **FastAPI**, **Spring Boot**, and **Django**. I'm equally at home training ML models with **Scikit-learn** and **Sentence-BERT** as I am setting up CI/CD pipelines.
 
