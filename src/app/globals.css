@@ -196,3 +196,190 @@ body {
 [data-theme="light"] ::selection {
   background: rgba(0, 122, 204, 0.15);
 }
+
+/* ═══════════════════════════════════════════════
+   Tab Bar & Close Button — VSCode-style
+   ═══════════════════════════════════════════════ */
+
+.tab-bar {
+  display: flex;
+  background: var(--bg-tab);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px 0 14px;
+  height: 35px;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  min-width: 0;
+  max-width: 180px;
+  position: relative;
+}
+
+.tab-active {
+  background: var(--bg-editor);
+  border-bottom: 2px solid var(--accent-pink);
+}
+
+.tab-inactive {
+  background: var(--bg-tab);
+  color: var(--text-muted);
+}
+
+.tab-inactive:hover {
+  background: var(--bg-tab-active);
+  color: var(--text-primary);
+}
+
+.tab-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  flex: 1;
+}
+
+.tab-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The close button — mimics VSCode exactly */
+.tab-close {
+  opacity: 0;
+  padding: 2px;
+  border: none;
+  background: none;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.1s ease, background-color 0.1s ease;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+/* Show × on tab hover */
+.tab-item:hover .tab-close {
+  opacity: 0.6;
+}
+
+/* Always show × on active tab */
+.tab-active .tab-close {
+  opacity: 0.5;
+}
+
+/* Brighten × on direct hover */
+.tab-close:hover {
+  opacity: 1 !important;
+  background-color: var(--border);
+  color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════
+   Empty Editor State
+   ═══════════════════════════════════════════════ */
+
+.empty-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  color: var(--text-muted);
+  padding: 48px;
+  text-align: center;
+  font-family: var(--font-mono);
+  min-height: 100%;
+}
+
+.empty-prompt {
+  font-size: 20px;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  opacity: 0.7;
+}
+
+.empty-message {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Blinking cursor */
+.cursor-blink {
+  animation: cursorBlink 1s step-end infinite;
+  color: var(--accent-pink);
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* Quick-open file buttons */
+.empty-quickopen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.empty-file-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.empty-file-btn:hover {
+  border-color: var(--accent-pink);
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--accent-pink) 8%, transparent);
+}
+
+/* Keyboard hint */
+.empty-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.empty-hint kbd {
+  font-family: var(--font-mono);
+  padding: 1px 5px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 10px;
+}
+.empty-hint-sub {
+  font-size: 10px;
+  opacity: 0.6;
+  font-style: italic;
+}

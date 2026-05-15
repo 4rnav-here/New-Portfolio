@@ -4,6 +4,8 @@ import { Titlebar } from '@/components/ide/Titlebar';
 import { Sidebar } from '@/components/ide/Sidebar';
 import { TabBar } from '@/components/ide/TabBar';
 import { StatusBar } from '@/components/ide/StatusBar';
+import { EditorShell } from '@/components/ide/EditorShell';
+import { TabProvider } from '@/lib/TabContext';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -44,18 +46,18 @@ export default function RootLayout({
         />
       </head>
       <body className="h-full flex flex-col font-mono bg-bg-primary text-text-primary overflow-hidden">
-        {/* IDE Shell */}
-        <Titlebar />
-        <div className="flex flex-1 overflow-hidden">
-          <Sidebar />
-          <div className="flex-1 flex flex-col overflow-hidden">
-            <TabBar />
-            <main className="flex-1 overflow-y-auto bg-bg-editor p-6 md:p-8">
-              {children}
-            </main>
+        <TabProvider>
+          {/* IDE Shell */}
+          <Titlebar />
+          <div className="flex flex-1 overflow-hidden">
+            <Sidebar />
+            <div className="flex-1 flex flex-col overflow-hidden">
+              <TabBar />
+              <EditorShell>{children}</EditorShell>
+            </div>
           </div>
-        </div>
-        <StatusBar />
+          <StatusBar />
+        </TabProvider>
       </body>
     </html>
   );

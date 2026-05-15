@@ -13,6 +13,8 @@ import {
   X,
 } from 'lucide-react';
 import { useState } from 'react';
+import { useTabContext } from '@/lib/TabContext';
+import { getTabByPath } from '@/lib/tabs';
 
 interface FileItem {
   name: string;
@@ -70,10 +72,21 @@ function SidebarFileItem({
   depth?: number;
   onNavigate?: () => void;
 }) {
+  const { dispatch } = useTabContext();
+
+  const handleClick = () => {
+    // Dispatch OPEN_TAB so the tab appears in the tab bar
+    const tab = getTabByPath(item.path);
+    if (tab) {
+      dispatch({ type: 'OPEN_TAB', tab });
+    }
+    onNavigate?.();
+  };
+
   return (
     <Link
       href={item.path}
-      onClick={onNavigate}
+      onClick={handleClick}
       className={`flex items-center gap-2 px-2 py-1 text-xs font-mono cursor-pointer rounded-sm transition-colors ${
         isActive
           ? 'bg-bg-editor text-text-primary'
