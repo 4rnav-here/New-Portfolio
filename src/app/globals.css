@@ -6,32 +6,32 @@
 
 :root,
 [data-theme="dark"] {
-  --bg-primary:    #0d0d0d;
-  --bg-sidebar:    #111111;
-  --bg-editor:     #141414;
-  --bg-tab:        #1a1a1a;
+  --bg-primary: #0d0d0d;
+  --bg-sidebar: #111111;
+  --bg-editor: #141414;
+  --bg-tab: #1a1a1a;
   --bg-tab-active: #0d0d0d;
-  --border:        #2a2a2a;
-  --text-primary:  #e8e8e8;
-  --text-muted:    #666666;
-  --accent-pink:   #ff2d78;
-  --accent-cyan:   #00e5ff;
+  --border: #2a2a2a;
+  --text-primary: #e8e8e8;
+  --text-muted: #666666;
+  --accent-pink: #00BFFF;
+  --accent-cyan: #00e5ff;
   --accent-yellow: #ffd600;
   --scrollbar-thumb: #333;
   --scrollbar-track: #111;
 }
 
 [data-theme="light"] {
-  --bg-primary:    #faf7f2;
-  --bg-sidebar:    #f0ebe3;
-  --bg-editor:     #ffffff;
-  --bg-tab:        #ede8e0;
+  --bg-primary: #faf7f2;
+  --bg-sidebar: #f0ebe3;
+  --bg-editor: #ffffff;
+  --bg-tab: #ede8e0;
   --bg-tab-active: #ffffff;
-  --border:        #ddd8d0;
-  --text-primary:  #1a1a1a;
-  --text-muted:    #888888;
-  --accent-pink:   #e8005a;
-  --accent-cyan:   #007acc;
+  --border: #ddd8d0;
+  --text-primary: #1a1a1a;
+  --text-muted: #888888;
+  --accent-pink: #A855F7;
+  --accent-cyan: #007acc;
   --accent-yellow: #b8860b;
   --scrollbar-thumb: #ccc;
   --scrollbar-track: #f0ebe3;
@@ -61,7 +61,8 @@
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -100,31 +101,73 @@ body {
    Syntax Highlighting Classes
    ═══════════════════════════════════════════════ */
 
-.syntax-comment  { color: #4a9a4a; font-style: italic; }
-.syntax-keyword  { color: var(--accent-cyan); }
-.syntax-string   { color: #ce9178; }
-.syntax-function { color: #dcdcaa; }
-.syntax-type     { color: #4ec9b0; }
-.syntax-number   { color: #b5cea8; }
-.syntax-operator { color: var(--text-primary); }
+.syntax-comment {
+  color: #4a9a4a;
+  font-style: italic;
+}
 
-[data-theme="light"] .syntax-comment  { color: #2d7d2d; }
-[data-theme="light"] .syntax-keyword  { color: #0057ab; }
-[data-theme="light"] .syntax-string   { color: #a44a00; }
-[data-theme="light"] .syntax-function { color: #795e26; }
-[data-theme="light"] .syntax-type     { color: #267f99; }
+.syntax-keyword {
+  color: var(--accent-cyan);
+}
+
+.syntax-string {
+  color: #ce9178;
+}
+
+.syntax-function {
+  color: #dcdcaa;
+}
+
+.syntax-type {
+  color: #4ec9b0;
+}
+
+.syntax-number {
+  color: #b5cea8;
+}
+
+.syntax-operator {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .syntax-comment {
+  color: #2d7d2d;
+}
+
+[data-theme="light"] .syntax-keyword {
+  color: #0057ab;
+}
+
+[data-theme="light"] .syntax-string {
+  color: #a44a00;
+}
+
+[data-theme="light"] .syntax-function {
+  color: #795e26;
+}
+
+[data-theme="light"] .syntax-type {
+  color: #267f99;
+}
 
 /* ═══════════════════════════════════════════════
    Typewriter Animation (pure CSS)
    ═══════════════════════════════════════════════ */
 
 @keyframes typing {
-  from { width: 0 }
-  to   { width: 100% }
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
 }
 
 @keyframes blink {
-  50% { border-color: transparent; }
+  50% {
+    border-color: transparent;
+  }
 }
 
 .typewriter {
@@ -144,6 +187,7 @@ body {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -171,7 +215,7 @@ body {
   counter-reset: line;
 }
 
-.line-numbers > .line::before {
+.line-numbers>.line::before {
   counter-increment: line;
   content: counter(line);
   display: inline-block;
@@ -209,7 +253,10 @@ body {
   scrollbar-width: none;
   flex-shrink: 0;
 }
-.tab-bar::-webkit-scrollbar { display: none; }
+
+.tab-bar::-webkit-scrollbar {
+  display: none;
+}
 
 .tab-item {
   display: flex;
@@ -327,9 +374,17 @@ body {
   animation: cursorBlink 1s step-end infinite;
   color: var(--accent-pink);
 }
+
 @keyframes cursorBlink {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Quick-open file buttons */
@@ -371,6 +426,7 @@ body {
   flex-direction: column;
   gap: 4px;
 }
+
 .empty-hint kbd {
   font-family: var(--font-mono);
   padding: 1px 5px;
@@ -378,6 +434,7 @@ body {
   border-radius: 3px;
   font-size: 10px;
 }
+
 .empty-hint-sub {
   font-size: 10px;
   opacity: 0.6;
