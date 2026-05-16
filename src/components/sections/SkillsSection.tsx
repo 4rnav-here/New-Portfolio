@@ -1,13 +1,15 @@
 import { Badge } from '@/components/ui/Badge';
 import type { PortfolioData } from '@/lib/parseInfo';
 
+// Left border colors for each skill category — using fixed Tailwind colors
+// so they work as visual differentiators regardless of theme accent
 const categoryColors: Record<string, string> = {
-  Languages: 'border-l-blue-400',
-  Frontend: 'border-l-yellow-400',
-  Backend: 'border-l-green-400',
-  Databases: 'border-l-orange-400',
-  'AI / ML': 'border-l-purple-400',
-  'DevOps & Tools': 'border-l-cyan-400',
+  Languages:       'border-l-blue-400',
+  Frontend:        'border-l-yellow-400',
+  Backend:         'border-l-green-400',
+  Databases:       'border-l-orange-400',
+  'AI / ML':       'border-l-purple-400',
+  'DevOps & Tools':'border-l-cyan-400',
 };
 
 export function SkillsSection({ data }: { data: PortfolioData }) {
@@ -33,11 +35,11 @@ export function SkillsSection({ data }: { data: PortfolioData }) {
           {data.skills.map((cat) => (
             <div
               key={cat.category}
-              className={`bg-bg-tab/50 border border-border rounded-sm p-4 border-l-2 ${
-                categoryColors[cat.category] || 'border-l-accent-pink'
-              } hover:bg-bg-tab transition-colors`}
+              className={`bg-bg-hover/30 border border-border rounded-sm p-4 border-l-2 ${
+                categoryColors[cat.category] ?? 'border-l-accent-primary'
+              } hover:bg-bg-hover transition-colors`}
             >
-              <div className="text-xs font-mono text-accent-cyan mb-3 flex items-center gap-2">
+              <div className="text-xs font-mono mb-3 flex items-center gap-2" style={{ color: 'var(--accent-secondary)' }}>
                 <span className="syntax-string">&quot;{cat.category}&quot;</span>
                 <span className="syntax-operator">:</span>
               </div>

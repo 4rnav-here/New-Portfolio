@@ -42,6 +42,7 @@ function getInitialState(): TabState {
 export function TabProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(tabReducer, undefined, getInitialState);
   const isHydrated = useRef(false);
+  const skipNextSave = useRef(false);
   const pathname = usePathname();
 
   // Restore from sessionStorage on mount — single RESTORE dispatch (no flash)
@@ -59,6 +60,7 @@ export function TabProvider({ children }: { children: ReactNode }) {
             savedActive && validTabs.some((t) => t.id === savedActive)
               ? savedActive
               : validTabs[0].id;
+          skipNextSave.current = true; // Prevent saving the restored state back immediately
           dispatch({ type: 'RESTORE', tabs: validTabs, activeId });
         }
       }
@@ -69,7 +71,6 @@ export function TabProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // Pathname sync: auto-open a tab when navigating via <Link> from page content
-  // This fixes links like "Projects", "About Me", "Contact" on the home page
   useEffect(() => {
     if (!isHydrated.current) return;
     const tab = getTabByPath(pathname);
@@ -81,6 +82,10 @@ export function TabProvider({ children }: { children: ReactNode }) {
   // Persist to sessionStorage on every state change
   useEffect(() => {
     if (!isHydrated.current) return;
+    if (skipNextSave.current) {
+      skipNextSave.current = false;
+      return;
+    }
     try {
       sessionStorage.setItem('openTabs', JSON.stringify(state.openTabs));
       sessionStorage.setItem('activeTabId', state.activeTabId ?? '');

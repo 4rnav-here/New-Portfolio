@@ -1,6 +1,7 @@
 ---
 name: "Arnav Trivedi"
 tagline: "Building intelligent systems with MERN, AI/ML & Spring Boot 🚀"
+bio_short: "I build at the intersection of intelligent systems and developer experience — full-stack with MERN, ML pipelines, and Spring Boot backends."
 roles:
   - "Full Stack Developer"
   - "AI / ML Explorer"
@@ -20,18 +21,18 @@ socials:
   linkedin: "https://linkedin.com/in/arnavtrivedi2004"
   email: "arnavtrivediofficial@gmail.com"
 projects:
-  - title: "ATS Score Checker"
+  - title: "PassTheATS"
     description: "AI-powered resume analyzer using NLP, TF-IDF keyword matching, and Sentence-BERT semantic similarity. Includes a Telegram bot for on-the-go resume analysis and intelligent job search alerts."
     tags: ["Python", "FastAPI", "Next.js", "Sentence-BERT", "TF-IDF", "TypeScript"]
     image: "/images/project-1.jpg"
     link: "https://github.com/4rnav-here/ATS-Score-Checker"
   - title: "Leather Defect Inspector"
-    description: "AI-powered leather quality inspector that detects defects such as scratches, wrinkles, and holes — and identifies whether a sample is genuinely leather or fake."
+    description: "ML and DL based leather quality inspector that detects defects such as scratches, wrinkles, and holes — and identifies whether a sample is genuinely leather or fake."
     tags: ["Python", "Computer Vision", "Deep Learning"]
     image: "/images/project-2.jpg"
     link: "https://github.com/4rnav-here/Leather-Defect_Project"
   - title: "AI Chatbot Platform"
-    description: "Premium full-stack AI chatbot platform for creating intelligent agents, managing knowledge bases through file uploads, and engaging in conversations. Deployed on Railway + Vercel."
+    description: "A full-stack AI chatbot platform for creating intelligent agents, managing knowledge bases through file uploads, and engaging in conversations. Deployed on Railway + Vercel."
     tags: ["JavaScript", "Gemini API", "Railway", "Vercel"]
     image: "/images/project-3.jpg"
     link: "https://github.com/4rnav-here/Chatbot-Assignment"
@@ -58,9 +59,9 @@ skills:
   - category: "Backend"
     items: ["Node.js", "Express.js", "Spring Boot", "Django", "FastAPI"]
   - category: "Databases"
-    items: ["MongoDB", "MySQL"]
+    items: ["MongoDB", "MySQL", "PostgreSQL", "NoSQL"]
   - category: "AI / ML"
-    items: ["Scikit-learn", "Sentence-BERT", "TF-IDF", "Ollama", "Gemini API", "RAG"]
+    items: ["PyTorch", "TensorFlow", "Scikit-learn", "LangChain", "LangGraph", "Ollama"]
   - category: "DevOps & Tools"
     items: ["CI/CD Pipelines", "Docker", "Railway", "Vercel", "Postman", "Maven", "Git"]
 experience:

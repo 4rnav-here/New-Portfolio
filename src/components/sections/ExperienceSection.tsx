@@ -53,7 +53,7 @@ export function ExperienceSection({ data }: { data: PortfolioData }) {
           <div key={i} className="flex gap-4 group">
             {/* Timeline line */}
             <div className="flex flex-col items-center">
-              <div className="w-3 h-3 rounded-full bg-accent-pink border-2 border-bg-editor shrink-0 mt-1 group-hover:scale-125 transition-transform" />
+              <div className="w-3 h-3 rounded-full border-2 border-bg-editor shrink-0 mt-1 group-hover:scale-125 transition-transform" style={{ background: 'var(--accent-primary)' }} />
               {i < data.experience.length - 1 && (
                 <div className="w-px flex-1 bg-border min-h-[40px]" />
               )}
@@ -78,7 +78,7 @@ export function ExperienceSection({ data }: { data: PortfolioData }) {
                     key={j}
                     className="text-xs text-text-muted leading-relaxed flex gap-2"
                   >
-                    <span className="text-accent-pink shrink-0">•</span>
+                    <span className="shrink-0" style={{ color: 'var(--accent-primary)' }}>•</span>
                     <span>{bullet}</span>
                   </li>
                 ))}

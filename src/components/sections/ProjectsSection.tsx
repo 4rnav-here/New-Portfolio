@@ -28,10 +28,10 @@ export function ProjectsSection({ data }: { data: PortfolioData }) {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block bg-bg-tab/30 border border-border rounded-sm overflow-hidden hover:-translate-y-1 hover:border-accent-pink/50 transition-all duration-150"
+              className="group block bg-bg-tab/30 border border-border rounded-sm overflow-hidden hover:-translate-y-1 hover:border-accent-primary/50 transition-all duration-150"
             >
               {/* Colored header bar */}
-              <div className="h-1.5 bg-gradient-to-r from-accent-pink via-accent-cyan to-accent-yellow" />
+              <div className="h-1.5 bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-teal" />
 
               <div className="p-4">
                 {/* Project number + title */}
@@ -40,7 +40,7 @@ export function ProjectsSection({ data }: { data: PortfolioData }) {
                     <span className="text-[10px] text-text-muted font-mono">
                       {`project_${String(i).padStart(2, '0')}`}
                     </span>
-                    <h3 className="text-sm font-mono font-bold text-text-primary group-hover:text-accent-pink transition-colors">
+                    <h3 className="text-sm font-mono font-bold text-text-primary group-hover:text-accent-primary transition-colors">
                       {project.title}
                     </h3>
                   </div>

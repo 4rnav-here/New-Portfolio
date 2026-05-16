@@ -43,7 +43,7 @@ export function ContactSection({ data }: { data: PortfolioData }) {
         <div>
           <h2 className="text-2xl md:text-3xl font-display font-extrabold text-text-primary mb-2">
             Let&apos;s build something
-            <span className="text-accent-pink">.</span>
+            <span style={{ color: 'var(--accent-primary)' }}>.</span>
           </h2>
           <p className="text-sm text-text-muted font-mono leading-relaxed">
             Have an idea, a project, or just want to say hello? <br />
@@ -58,7 +58,7 @@ export function ContactSection({ data }: { data: PortfolioData }) {
           </div>
           <button
             onClick={copyEmail}
-            className="flex items-center gap-1.5 px-4 py-2.5 bg-accent-pink text-white text-xs font-mono rounded-sm hover:brightness-110 transition-all cursor-pointer shrink-0"
+            className="flex items-center gap-1.5 px-4 py-2.5 bg-accent-primary text-white text-xs font-mono rounded-sm hover:brightness-110 transition-all cursor-pointer shrink-0"
           >
             {copied ? (
               <>
