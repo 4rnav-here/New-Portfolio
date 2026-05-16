@@ -4,9 +4,8 @@ tagline: "Building intelligent systems with MERN, AI/ML & Spring Boot 🚀"
 bio_short: "I build at the intersection of intelligent systems and developer experience — full-stack with MERN, ML pipelines, and Spring Boot backends."
 roles:
   - "Full Stack Developer"
-  - "AI / ML Explorer"
-  - "Backend Engineer"
-  - "@ VIT"
+  - "AI / ML Engineer"
+  - "Backend Developer"
 stats:
   - value: "25+"
     label: "PROJECTS"
