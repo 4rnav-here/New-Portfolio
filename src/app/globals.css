@@ -346,8 +346,10 @@ body {
   transition: opacity 0.4s ease;
 }
 
-/* All content should render above the blobs */
-.blob-bg ~ * {
+/* Only the IDE shell wrapper sits above blobs.
+   Portals appended to body later must NOT be targeted here,
+   because `position: relative` would override their `position: fixed`. */
+.blob-bg ~ .ide-root {
   position: relative;
   z-index: 1;
 }
@@ -530,6 +532,14 @@ body {
   opacity: 0.5;
 }
 
+/* Tighter gutter on mobile — saves ~1.5em of precious horizontal space */
+@media (max-width: 767px) {
+  .line-numbers > .line::before {
+    width: 1.5em;
+    margin-right: 0.75em;
+  }
+}
+
 /* ═══════════════════════════════════════════════
    Selection Styling
    ═══════════════════════════════════════════════ */
@@ -544,7 +554,7 @@ body {
    ═══════════════════════════════════════════════ */
 
 .tab-bar {
-  display: flex;
+  /* display is controlled by the component (flex utility class) */
   background: var(--bg-tab-inactive);
   border-bottom: 1px solid var(--border-color);
   overflow-x: auto;
@@ -560,14 +570,21 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 0 12px 0 14px;
+  padding: 0 8px 0 10px;
   height: 35px;
   border-right: 1px solid var(--border-color);
   cursor: pointer;
   user-select: none;
   min-width: 0;
-  max-width: 180px;
+  max-width: 140px;   /* tighter on mobile */
   position: relative;
+}
+
+@media (min-width: 768px) {
+  .tab-item {
+    padding: 0 12px 0 14px;
+    max-width: 180px;
+  }
 }
 
 .tab-active {
@@ -730,4 +747,63 @@ body {
   font-size: 10px;
   opacity: 0.6;
   font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════
+   Utility: Hide scrollbar while keeping scrollability
+   ═══════════════════════════════════════════════ */
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════
+   Mobile — comprehensive layout fixes
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  /* ── Editor shell ── */
+  main {
+    /* Override the Tailwind p-6 with tighter mobile padding */
+    padding: 0.75rem !important;
+  }
+
+  /* ── Typewriter: prevent overflow on narrow screens ── */
+  .typewriter {
+    max-width: 100%;
+    white-space: normal;
+    overflow: visible;
+    animation: none;
+    border-right: none;
+  }
+
+  /* ── Breadcrumb bar ── */
+  .breadcrumb-bar {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .breadcrumb-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Empty editor state ── */
+  .empty-editor {
+    padding: 24px 16px;
+  }
+  .empty-prompt {
+    font-size: 15px;
+  }
+
+  /* ── Tab items: even more compact on xs screens ── */
+  .tab-item {
+    padding: 0 6px 0 8px;
+    max-width: 110px;
+  }
+  .tab-label {
+    font-size: 11px;
+  }
 }

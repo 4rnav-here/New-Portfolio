@@ -8,7 +8,7 @@ export function EditorShell({ children }: { children: React.ReactNode }) {
   const isEmpty = state.openTabs.length === 0;
 
   return (
-    <main className="flex-1 overflow-y-auto bg-bg-editor p-6 md:p-8">
+    <main className="flex-1 overflow-y-auto bg-bg-editor p-3 sm:p-5 md:p-8">
       {isEmpty ? <EmptyEditor /> : children}
     </main>
   );

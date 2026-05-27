@@ -56,22 +56,24 @@ export default function RootLayout({
           <div className="blob blob-2" />
           <div className="blob blob-3" />
         </div>
-        <TabProvider>
-          {/* IDE Shell */}
-          <Titlebar />
-          <div className="flex flex-1 overflow-hidden">
-            <ActivityBar />
-            <Sidebar />
-            <div className="flex-1 flex flex-col overflow-hidden editor-bg-texture">
-              <TabBar />
-              <div className="flex-1 flex overflow-hidden">
-                <EditorShell>{children}</EditorShell>
-                <Minimap />
+        <div className="ide-root flex flex-col flex-1 overflow-hidden">
+          <TabProvider>
+            {/* IDE Shell */}
+            <Titlebar />
+            <div className="flex flex-1 overflow-hidden">
+              <ActivityBar />
+              <Sidebar />
+              <div className="flex-1 flex flex-col overflow-hidden editor-bg-texture">
+                <TabBar />
+                <div className="flex-1 flex overflow-hidden">
+                  <EditorShell>{children}</EditorShell>
+                  <Minimap />
+                </div>
               </div>
             </div>
-          </div>
-          <StatusBar />
-        </TabProvider>
+            <StatusBar />
+          </TabProvider>
+        </div>
       </body>
     </html>
   );

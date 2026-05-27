@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Palette } from 'lucide-react';
 
 interface ThemeOption {
@@ -51,26 +52,57 @@ const THEMES: ThemeOption[] = [
 
 export type ThemeKey = typeof THEMES[number]['key'];
 
+interface DropdownPos {
+  bottom: number; // distance from viewport bottom
+  right: number;  // distance from viewport right
+}
+
 export function ThemeToggle() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<string>('catppuccin-mocha');
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [dropPos, setDropPos] = useState<DropdownPos>({ bottom: 0, right: 0 });
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    setMounted(true);
     const saved = localStorage.getItem('portfolio-theme');
     const valid = THEMES.map((t) => t.key);
     const initial = (saved && valid.includes(saved)) ? saved : 'catppuccin-mocha';
     setCurrentTheme(initial);
     document.documentElement.setAttribute('data-theme', initial);
+  }, []);
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+  // Close on outside click
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (buttonRef.current && !buttonRef.current.closest('[data-theme-toggle]')?.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [isOpen]);
+
+  const openDropdown = () => {
+    if (!buttonRef.current) return;
+    const rect = buttonRef.current.getBoundingClientRect();
+    // Position dropdown above the button, clamped to viewport edges
+    const DROPDOWN_WIDTH = 256; // w-64
+    const GAP = 8;
+
+    // Distance from bottom of viewport = viewport height - top of button + gap
+    const bottom = window.innerHeight - rect.top + GAP;
+
+    // Align right edge of dropdown with right edge of button, but clamp so it
+    // never goes past the left edge of the viewport (8px min margin)
+    const rightEdge = window.innerWidth - rect.right;
+    const clampedRight = Math.max(8, Math.min(rightEdge, window.innerWidth - DROPDOWN_WIDTH - 8));
+
+    setDropPos({ bottom, right: clampedRight });
+    setIsOpen((o) => !o);
+  };
 
   const selectTheme = (key: string) => {
     setCurrentTheme(key);
@@ -81,44 +113,53 @@ export function ThemeToggle() {
 
   const activeTheme = THEMES.find((t) => t.key === currentTheme);
 
+  const dropdown = isOpen && mounted ? (
+    createPortal(
+      <div
+        data-theme-toggle-dropdown
+        className="fixed z-[9999] w-64 bg-bg-editor border border-border shadow-2xl rounded overflow-hidden font-mono text-xs"
+        style={{ bottom: dropPos.bottom, right: dropPos.right }}
+      >
+        <div className="px-3 py-2 bg-bg-sidebar border-b border-border text-text-muted font-bold text-[10px] tracking-wider uppercase">
+          Dark Themes
+        </div>
+        {THEMES.filter((t) => t.category === 'dark').map((theme) => (
+          <ThemeItem
+            key={theme.key}
+            theme={theme}
+            isActive={currentTheme === theme.key}
+            onClick={() => selectTheme(theme.key)}
+          />
+        ))}
+
+        <div className="px-3 py-2 bg-bg-sidebar border-y border-border text-text-muted font-bold text-[10px] tracking-wider uppercase">
+          Light Themes
+        </div>
+        {THEMES.filter((t) => t.category === 'light').map((theme) => (
+          <ThemeItem
+            key={theme.key}
+            theme={theme}
+            isActive={currentTheme === theme.key}
+            onClick={() => selectTheme(theme.key)}
+          />
+        ))}
+      </div>,
+      document.body,
+    )
+  ) : null;
+
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative" data-theme-toggle>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        ref={buttonRef}
+        onClick={openDropdown}
         className="flex items-center gap-1.5 px-2 hover:bg-white/10 rounded transition-colors cursor-pointer outline-none"
         title="Change Theme"
       >
         <Palette size={11} />
-        <span>{activeTheme?.name ?? 'Theme'}</span>
+        <span className="hidden sm:inline">{activeTheme?.name ?? 'Theme'}</span>
       </button>
-
-      {isOpen && (
-        <div className="absolute bottom-full right-0 mb-2 w-64 bg-bg-editor border border-border shadow-2xl rounded overflow-hidden z-[1000] font-mono text-xs">
-          <div className="px-3 py-2 bg-bg-sidebar border-b border-border text-text-muted font-bold text-[10px] tracking-wider uppercase">
-            Dark Themes
-          </div>
-          {THEMES.filter((t) => t.category === 'dark').map((theme) => (
-            <ThemeItem
-              key={theme.key}
-              theme={theme}
-              isActive={currentTheme === theme.key}
-              onClick={() => selectTheme(theme.key)}
-            />
-          ))}
-
-          <div className="px-3 py-2 bg-bg-sidebar border-y border-border text-text-muted font-bold text-[10px] tracking-wider uppercase">
-            Light Themes
-          </div>
-          {THEMES.filter((t) => t.category === 'light').map((theme) => (
-            <ThemeItem
-              key={theme.key}
-              theme={theme}
-              isActive={currentTheme === theme.key}
-              onClick={() => selectTheme(theme.key)}
-            />
-          ))}
-        </div>
-      )}
+      {dropdown}
     </div>
   );
 }

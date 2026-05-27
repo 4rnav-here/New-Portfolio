@@ -52,8 +52,8 @@ export function ContactSection({ data }: { data: PortfolioData }) {
         </div>
 
         {/* Email copy */}
-        <div className="flex items-center gap-3">
-          <div className="flex-1 bg-bg-tab border border-border rounded-sm px-4 py-2.5 font-mono text-sm text-text-primary">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex-1 min-w-0 bg-bg-tab border border-border rounded-sm px-4 py-2.5 font-mono text-sm text-text-primary truncate">
             {data.socials.email}
           </div>
           <button
@@ -75,7 +75,7 @@ export function ContactSection({ data }: { data: PortfolioData }) {
         </div>
 
         {/* Social links */}
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <a
             href={data.socials.github}
             target="_blank"

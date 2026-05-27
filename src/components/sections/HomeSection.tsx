@@ -35,8 +35,8 @@ export function HomeSection({ data }: { data: PortfolioData }) {
         <span className="syntax-operator">=</span>{' '}
         <span className="syntax-string">&quot;{firstName}</span>
       </div>
-      <div className="line pl-8">
-        <span className="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight" style={{ color: 'var(--accent-primary)' }}>
+      <div className="line pl-2 sm:pl-8">
+        <span className="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight" style={{ color: 'var(--accent-primary)' }}>
           {lastName}
         </span>
         <span className="syntax-string">&quot;</span>

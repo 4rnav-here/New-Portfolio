@@ -400,10 +400,10 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Mobile hamburger */}
+      {/* Mobile hamburger — sits in the top-left titlebar area (traffic lights are hidden on mobile) */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="md:hidden fixed top-1.5 left-14 z-50 p-1.5 rounded bg-bg-tab border border-border"
+        className="md:hidden fixed top-[7px] left-2 z-[60] p-1.5 rounded bg-bg-tab border border-border text-text-muted hover:text-text-primary transition-colors"
         aria-label="Open sidebar"
       >
         <Menu size={16} />

@@ -56,7 +56,7 @@ export function TabBar() {
 
   return (
     <>
-      <div className="tab-bar hidden md:flex" role="tablist" ref={tabBarRef}>
+      <div className="tab-bar flex" role="tablist" ref={tabBarRef}>
         {state.openTabs.map((tab) => {
           const isActive = tab.id === state.activeTabId;
           return (
