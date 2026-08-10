@@ -15,6 +15,7 @@ const fileTypes: Record<string, string> = {
   '/projects':   'JavaScript JSX',
   '/experience': 'TypeScript',
   '/contact':    'JavaScript JSX',
+  '/chat':       'TypeScript JSX',
 };
 
 export function StatusBar() {

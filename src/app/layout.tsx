@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="catppuccin-mocha"
+      data-theme="midnight-void"
       className={`${mono.variable} ${display.variable} h-full`}
       suppressHydrationWarning
     >
@@ -42,7 +42,7 @@ export default function RootLayout({
               (function(){
                 var stored = localStorage.getItem('portfolio-theme');
                 var valid = ['catppuccin-mocha','midnight-void','matcha-earthy','catppuccin-latte','matcha-parchment'];
-                var theme = (stored && valid.indexOf(stored) !== -1) ? stored : 'catppuccin-mocha';
+                var theme = (stored && valid.indexOf(stored) !== -1) ? stored : 'midnight-void';
                 document.documentElement.setAttribute('data-theme', theme);
               })();
             `,

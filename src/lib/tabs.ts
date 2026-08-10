@@ -31,6 +31,7 @@ export const ALL_TABS: Tab[] = [
   { id: 'projects', label: 'showcase.jsx', path: '/projects', icon: 'jsx' },
   { id: 'experience', label: 'experience.ts', path: '/experience', icon: 'ts' },
   { id: 'contact', label: 'contact.jsx', path: '/contact', icon: 'jsx' },
+  { id: 'chat', label: 'chat.tsx', path: '/chat', icon: 'tsx' },
 ];
 
 /** Given a route path, return the matching tab definition or undefined */

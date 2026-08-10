@@ -3,7 +3,7 @@
 import { Badge } from '@/components/ui/Badge';
 import { StatCard } from '@/components/ui/StatCard';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/Icons';
-import { Mail, FolderOpen, User, Send, Download } from 'lucide-react';
+import { Mail, FolderOpen, User, Send, Download, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import type { PortfolioData } from '@/lib/parseInfo';
 
@@ -103,6 +103,13 @@ export function HomeSection({ data }: { data: PortfolioData }) {
         >
           <FolderOpen size={14} />
           Projects
+        </Link>
+        <Link
+          href="/chat"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-accent-secondary text-white text-xs font-mono rounded-sm hover:brightness-110 transition-all"
+        >
+          <MessageCircle size={14} />
+          Chat with Me
         </Link>
         <Link
           href="/about"

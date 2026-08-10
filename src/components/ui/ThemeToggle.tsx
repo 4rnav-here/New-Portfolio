@@ -14,18 +14,18 @@ interface ThemeOption {
 
 const THEMES: ThemeOption[] = [
   {
+    key: 'midnight-void',
+    name: 'Midnight Void',
+    tagline: 'The original darkness — default',
+    category: 'dark',
+    swatches: ['#0d0d0d', '#7c3aed', '#2e7de9'],
+  },
+  {
     key: 'catppuccin-mocha',
     name: 'Catppuccin Mocha',
     tagline: 'The arch way — cozy pastels',
     category: 'dark',
     swatches: ['#1e1e2e', '#cba6f7', '#89b4fa'],
-  },
-  {
-    key: 'midnight-void',
-    name: 'Midnight Void',
-    tagline: 'The original darkness',
-    category: 'dark',
-    swatches: ['#0d0d0d', '#7c3aed', '#2e7de9'],
   },
   {
     key: 'matcha-earthy',
@@ -60,7 +60,7 @@ interface DropdownPos {
 export function ThemeToggle() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState<string>('catppuccin-mocha');
+  const [currentTheme, setCurrentTheme] = useState<string>('midnight-void');
   const [dropPos, setDropPos] = useState<DropdownPos>({ bottom: 0, right: 0 });
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -68,7 +68,7 @@ export function ThemeToggle() {
     setMounted(true);
     const saved = localStorage.getItem('portfolio-theme');
     const valid = THEMES.map((t) => t.key);
-    const initial = (saved && valid.includes(saved)) ? saved : 'catppuccin-mocha';
+    const initial = (saved && valid.includes(saved)) ? saved : 'midnight-void';
     setCurrentTheme(initial);
     document.documentElement.setAttribute('data-theme', initial);
   }, []);
@@ -77,7 +77,10 @@ export function ThemeToggle() {
   useEffect(() => {
     if (!isOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
-      if (buttonRef.current && !buttonRef.current.closest('[data-theme-toggle]')?.contains(e.target as Node)) {
+      const target = e.target as Node;
+      const insideButton = buttonRef.current?.closest('[data-theme-toggle]')?.contains(target);
+      const insideDropdown = (target as Element).closest?.('[data-theme-toggle-dropdown]');
+      if (!insideButton && !insideDropdown) {
         setIsOpen(false);
       }
     };

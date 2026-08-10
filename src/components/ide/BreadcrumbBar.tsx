@@ -12,6 +12,7 @@ const breadcrumbs: Record<string, string[]> = {
   '/skills':     ['src', 'app', 'skills', 'page.tsx'],
   '/experience': ['src', 'app', 'experience', 'page.tsx'],
   '/contact':    ['src', 'app', 'contact', 'page.tsx'],
+  '/chat':       ['src', 'app', 'chat', 'page.tsx'],
 };
 
 export function BreadcrumbBar() {

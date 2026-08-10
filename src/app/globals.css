@@ -4,58 +4,14 @@
    Theme System — CSS Variables (5 named themes)
    ═══════════════════════════════════════════════ */
 
-/* Theme 1: Catppuccin Mocha — New Default Dark */
+/* Theme 1: Midnight Void — Default Dark
+   Paired with :root so it's the fallback whenever data-theme is absent or
+   unrecognized. Physically first in the file on purpose: every other theme
+   below has equal-specificity selectors, so cascade order (last wins) is
+   what lets an explicitly selected theme — including Catppuccin Mocha —
+   correctly override these defaults. Keep this block first if you reorder
+   anything else here. */
 :root,
-[data-theme="catppuccin-mocha"] {
-  --bg-primary:        #1e1e2e;
-  --bg-sidebar:        #181825;
-  --bg-editor:         #1e1e2e;
-  --bg-tab-active:     #1e1e2e;
-  --bg-tab-inactive:   #181825;
-  --bg-statusbar:      #11111b;
-  --bg-hover:          #313244;
-  --bg-input:          #313244;
-
-  --text-primary:      #cdd6f4;
-  --text-secondary:    #bac2de;
-  --text-muted:        #6c7086;
-  --text-statusbar:    #cdd6f4;
-
-  --syntax-keyword:    #cba6f7;
-  --syntax-string:     #a6e3a1;
-  --syntax-function:   #89b4fa;
-  --syntax-comment:    #6c7086;
-  --syntax-number:     #fab387;
-  --syntax-type:       #f9e2af;
-  --syntax-operator:   #89dceb;
-
-  --accent-primary:    #cba6f7;
-  --accent-secondary:  #89b4fa;
-  --accent-pink:       #f5c2e7;
-  --accent-green:      #a6e3a1;
-  --accent-peach:      #fab387;
-  --accent-teal:       #94e2d5;
-  --accent-yellow:     #f9e2af;
-
-  --border-color:      #313244;
-  --border-active:     #45475a;
-  --scrollbar-thumb:   #45475a;
-  --scrollbar-track:   #181825;
-
-  --badge-bg:          rgba(203, 166, 247, 0.12);
-  --badge-border:      rgba(203, 166, 247, 0.30);
-  --badge-text:        #cba6f7;
-
-  --bg-activitybar:    #11111b;
-
-  --minimap-bg:        #181825;
-  --minimap-line:      #45475a;
-  --minimap-viewport:  rgba(203, 166, 247, 0.15);
-
-  --blob-opacity:      0;
-}
-
-/* Theme 2: Midnight Void — Classic Dark */
 [data-theme="midnight-void"] {
   --bg-primary:        #0d0d0d;
   --bg-sidebar:        #111111;
@@ -101,6 +57,56 @@
   --minimap-bg:        #111111;
   --minimap-line:      #333333;
   --minimap-viewport:  rgba(124, 58, 237, 0.15);
+
+  --blob-opacity:      0;
+}
+
+/* Theme 2: Catppuccin Mocha — Dark */
+[data-theme="catppuccin-mocha"] {
+  --bg-primary:        #1e1e2e;
+  --bg-sidebar:        #181825;
+  --bg-editor:         #1e1e2e;
+  --bg-tab-active:     #1e1e2e;
+  --bg-tab-inactive:   #181825;
+  --bg-statusbar:      #11111b;
+  --bg-hover:          #313244;
+  --bg-input:          #313244;
+
+  --text-primary:      #cdd6f4;
+  --text-secondary:    #bac2de;
+  --text-muted:        #6c7086;
+  --text-statusbar:    #cdd6f4;
+
+  --syntax-keyword:    #cba6f7;
+  --syntax-string:     #a6e3a1;
+  --syntax-function:   #89b4fa;
+  --syntax-comment:    #6c7086;
+  --syntax-number:     #fab387;
+  --syntax-type:       #f9e2af;
+  --syntax-operator:   #89dceb;
+
+  --accent-primary:    #cba6f7;
+  --accent-secondary:  #89b4fa;
+  --accent-pink:       #f5c2e7;
+  --accent-green:      #a6e3a1;
+  --accent-peach:      #fab387;
+  --accent-teal:       #94e2d5;
+  --accent-yellow:     #f9e2af;
+
+  --border-color:      #313244;
+  --border-active:     #45475a;
+  --scrollbar-thumb:   #45475a;
+  --scrollbar-track:   #181825;
+
+  --badge-bg:          rgba(203, 166, 247, 0.12);
+  --badge-border:      rgba(203, 166, 247, 0.30);
+  --badge-text:        #cba6f7;
+
+  --bg-activitybar:    #11111b;
+
+  --minimap-bg:        #181825;
+  --minimap-line:      #45475a;
+  --minimap-viewport:  rgba(203, 166, 247, 0.15);
 
   --blob-opacity:      0;
 }
@@ -275,6 +281,7 @@
   --color-bg-tab-inactive: var(--bg-tab-inactive);
   --color-bg-statusbar:    var(--bg-statusbar);
   --color-bg-hover:        var(--bg-hover);
+  --color-bg-input:        var(--bg-input);
   --color-bg-activitybar:  var(--bg-activitybar);
 
   /* Text */

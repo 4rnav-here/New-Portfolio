@@ -77,6 +77,7 @@ const fileTree: TreeNode[] = [
           { kind: 'nav',  name: 'experience.ts',   path: '/experience', icon: 'ts'  },
           { kind: 'nav',  name: 'contact.jsx',     path: '/contact',    icon: 'jsx' },
           { kind: 'nav',  name: 'skills.jsx',      path: '/skills',     icon: 'jsx' },
+          { kind: 'nav',  name: 'chat.tsx',        path: '/chat',       icon: 'tsx' },
         ],
       },
       {
