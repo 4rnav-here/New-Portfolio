@@ -24,6 +24,13 @@ export interface Experience {
   bullets: string[];
 }
 
+export interface Education {
+  institution: string;
+  degree: string;
+  period: string;
+  cgpa?: string;
+}
+
 export interface Stat {
   value: string;
   label: string;
@@ -45,6 +52,7 @@ export interface PortfolioData {
   projects: Project[];
   skills: SkillCategory[];
   experience: Experience[];
+  education: Education[];
   aboutHtml: string;
 }
 
@@ -67,6 +75,7 @@ export async function getPortfolioData(): Promise<PortfolioData> {
     projects: data.projects || [],
     skills: data.skills || [],
     experience: data.experience || [],
+    education: data.education || [],
     aboutHtml,
   };
 }

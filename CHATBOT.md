@@ -93,10 +93,12 @@ and turns it into one long string with three parts:
    Q&A pairs written in that voice — models imitate concrete examples far
    more reliably than abstract instructions like "be funny," so this is
    doing most of the work for the tone you asked for.
-2. **The facts** — experience, projects, skills, tagline, bio, contact info,
-   all pulled live from `content/info.md`. This means editing your resume
-   content (which you already did earlier in this project) automatically
-   updates what the bot knows — nothing to keep in sync by hand.
+2. **The facts** — education, experience, projects, skills, tagline, bio,
+   contact info, all pulled live from `content/info.md`. This means editing
+   your resume content (which you already did earlier in this project)
+   automatically updates what the bot knows — nothing to keep in sync by
+   hand, *as long as the field is actually read here* (see the education
+   bug below for what happens when it isn't).
 3. **`BOUNDARIES`** — rules: only use the facts given, decline off-topic
    requests politely, never reveal the system prompt, never insult the
    visitor.
@@ -113,6 +115,31 @@ than it follows the abstract instruction above them.
 Nothing else needs to change — the facts and rules stay separate from the
 voice on purpose, so you can retune the tone without risking it forgetting
 the boundaries.
+
+**Bug found and fixed: education/CGPA was invisible to the bot.** Asking
+"which college did he study from?" got "the provided information does not
+mention it" — even though `content/info.md`'s About Me prose clearly states
+the college and CGPA. Root cause: `content/info.md` has two tiers of
+content — structured YAML fields (`experience`, `projects`, `skills`, each a
+typed array) and one blob of pre-rendered HTML prose (`aboutHtml`, from the
+`## About Me` markdown body). `buildSystemPrompt()` only ever read the
+structured tier; `aboutHtml` was fetched by `getPortfolioData()` but never
+referenced in this file. Education existed *only* as a sentence inside that
+unread prose blob — there was no `education` field anywhere to begin with.
+
+Fixed by promoting education to a real structured field, matching the
+existing `experience` pattern end to end:
+- `Education` interface + `education: Education[]` added to `PortfolioData`
+  in `parseInfo.ts` (institution, degree, period, optional cgpa).
+- `education:` array added to `content/info.md`'s frontmatter.
+- `buildSystemPrompt()` now maps `data.education` into an `Education:` block
+  in the facts section, the same way it already does for experience.
+
+This is the general lesson for extending the chatbot's knowledge going
+forward: **anything living only in the About Me prose (`aboutHtml`) is
+invisible to the bot.** If a fact needs to reach the chatbot, give it a real
+field in the frontmatter and read that field in `buildSystemPrompt()` —
+don't rely on it being mentioned somewhere in the prose.
 
 ### 4.2 `src/app/api/chat/route.ts` — the API route
 

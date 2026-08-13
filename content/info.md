@@ -55,6 +55,11 @@ projects:
     tags: ["Python", "RAG", "LLM", "Vector DB"]
     image: "/images/project-7.jpg"
     link: "https://github.com/4rnav-here/Excel-Rag-"
+education:
+  - institution: "Vellore Institute of Technology, Vellore"
+    degree: "Bachelor of Technology in Computer Science and Engineering"
+    period: "September 2022 – April 2026"
+    cgpa: "7.8/10"
 skills:
   - category: "Languages"
     items: ["Python", "JavaScript", "TypeScript", "Java", "SQL", "HTML", "CSS"]
