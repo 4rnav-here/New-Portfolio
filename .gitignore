@@ -32,7 +32,6 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-!.env.example
 
 # vercel
 .vercel
@@ -40,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dev / AI-assistant notes (README.md and content/info.md stay tracked)
+AGENTS.md
+CLAUDE.md
+CHATBOT.md
+random.txt
