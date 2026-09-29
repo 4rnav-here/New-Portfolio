@@ -3,6 +3,33 @@
 import { useChat } from '@ai-sdk/react';
 import { useEffect, useRef, useState } from 'react';
 import { Bot, Loader2, Send, User } from 'lucide-react';
+import ReactMarkdown, { type Components } from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
+// The model replies in Markdown (bold, lists, occasionally tables). Rendered
+// with hand-styled elements since @tailwindcss/typography isn't installed.
+const MARKDOWN_COMPONENTS: Components = {
+  p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+  strong: ({ children }) => <strong className="font-bold text-text-primary">{children}</strong>,
+  ul: ({ children }) => <ul className="mb-2 last:mb-0 list-disc pl-4 space-y-1">{children}</ul>,
+  ol: ({ children }) => <ol className="mb-2 last:mb-0 list-decimal pl-4 space-y-1">{children}</ol>,
+  a: ({ children, href }) => (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--accent-primary)' }}>
+      {children}
+    </a>
+  ),
+  code: ({ children }) => <code className="rounded-sm bg-bg-editor px-1">{children}</code>,
+  h1: ({ children }) => <p className="mb-2 font-bold">{children}</p>,
+  h2: ({ children }) => <p className="mb-2 font-bold">{children}</p>,
+  h3: ({ children }) => <p className="mb-2 font-bold">{children}</p>,
+  table: ({ children }) => (
+    <div className="mb-2 last:mb-0 overflow-x-auto">
+      <table className="border-collapse text-left">{children}</table>
+    </div>
+  ),
+  th: ({ children }) => <th className="border border-border px-2 py-1 font-bold">{children}</th>,
+  td: ({ children }) => <td className="border border-border px-2 py-1 align-top">{children}</td>,
+};
 
 // Shown before the visitor sends their first message — gives them a running
 // start instead of a blank input box.
@@ -90,15 +117,21 @@ export function ChatSection() {
                   <Bot size={16} className="shrink-0 mt-1" style={{ color: 'var(--accent-primary)' }} />
                 )}
                 <div
-                  className={`max-w-[80%] whitespace-pre-wrap rounded px-3 py-2 text-xs font-mono leading-relaxed ${
+                  className={`max-w-[80%] min-w-0 rounded px-3 py-2 text-xs font-mono leading-relaxed ${
                     message.role === 'user'
-                      ? 'bg-accent-primary text-white'
+                      ? 'whitespace-pre-wrap bg-accent-primary text-white'
                       : 'bg-bg-hover text-text-primary'
                   }`}
                 >
-                  {message.parts.map((part, i) =>
-                    part.type === 'text' ? <span key={i}>{part.text}</span> : null,
-                  )}
+                  {message.parts.map((part, i) => {
+                    if (part.type !== 'text') return null;
+                    if (message.role === 'user') return <span key={i}>{part.text}</span>;
+                    return (
+                      <ReactMarkdown key={i} remarkPlugins={[remarkGfm]} components={MARKDOWN_COMPONENTS}>
+                        {part.text}
+                      </ReactMarkdown>
+                    );
+                  })}
                 </div>
                 {message.role === 'user' && (
                   <User size={16} className="shrink-0 mt-1 text-text-muted" />

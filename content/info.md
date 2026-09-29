@@ -2,6 +2,7 @@
 name: "Arnav Trivedi"
 tagline: "Full-Stack Engineer building intelligent systems with React, Node.js & AI/ML 🚀"
 bio_short: "I build at the intersection of full-stack engineering and applied AI/ML — from clinic dashboards and biomechanics reporting engines to open-source dev tooling."
+status: "Between jobs as of September 2026 (last role: Full-Stack Engineer at Praan Health, June–August 2026). Spending the time building side projects with unreasonable enthusiasm and an unlimited Claude subscription, while fighting a life-or-death battle with the Workday application portal. Open to full-stack and AI/ML roles."
 roles:
   - "Full-Stack Engineer"
   - "AI / ML Engineer"
@@ -76,7 +77,7 @@ skills:
 experience:
   - role: "Full-Stack Engineer"
     company: "Praan Health"
-    period: "June 2026 – Present"
+    period: "June 2026 – August 2026"
     bullets:
       - "Built a role-based clinic administration dashboard in React and TypeScript on Firebase for member management, bookings, rescheduling, clinical notes, and health-pass redemption"
       - "Designed and implemented end-to-end integration of VALD Dynamo and HumanTrak, normalizing nested biomechanical data (strength, balance, mobility, ROM, gait) into a reporting engine powering patient reports and custom Body Age, Quality of Life, and health-risk assessments"
@@ -98,10 +99,10 @@ experience:
 
 ## About Me
 
-I'm **Arnav Trivedi**, a Computer Science undergraduate at **Vellore Institute of Technology** (2022–2026, CGPA 7.8/10), currently working as a **Full-Stack Engineer at Praan Health**.
+I'm **Arnav Trivedi**, a Computer Science undergraduate at **Vellore Institute of Technology** (2022–2026, CGPA 7.8/10), most recently a **Full-Stack Engineer at Praan Health**.
 
-My work spans the full stack: building role-based clinic dashboards in **React** and **TypeScript** on **Firebase**, integrating biomechanical data sources like VALD Dynamo and HumanTrak into a patient reporting engine, and shipping Python middleware on **Google Cloud Run**. Earlier, as a developer intern at **CivilBrains.ai**, I built chatbot-database integrations and LLM-powered data pipelines with **LangChain**, and worked with **Pandas** to process large-scale datasets.
+My work spans the full stack. At Praan Health I built role-based clinic dashboards in **React** and **TypeScript** on **Firebase**, integrated biomechanical data sources like VALD Dynamo and HumanTrak into a patient reporting engine, and shipped Python middleware on **Google Cloud Run**. Earlier, as a developer intern at **CivilBrains.ai**, I built chatbot-database integrations and LLM-powered data pipelines with **LangChain**, and worked with **Pandas** to process large-scale datasets.
 
 Outside of work, I build open-source tools like **FireDoc**, a Firestore schema documentation generator with a read-only-by-design security model, and ML projects like a leather defect classification CNN trained on 2,000+ images. I care about clean data pipelines, sound security defaults, and shipping things that actually get used.
 
-Currently exploring the intersection of **intelligent systems** and **developer tools**, and always looking for the next problem worth solving.
+Right now I'm between jobs: a developer with no employer, boundless enthusiasm, an unlimited Claude subscription, and an ongoing life-or-death battle with the Workday application portal. I'm exploring the intersection of **intelligent systems** and **developer tools** in the meantime, and I'm open to full-stack and AI/ML roles. If you're hiring, the Contact tab is right there.

@@ -46,6 +46,7 @@ export interface PortfolioData {
   name: string;
   tagline: string;
   bio_short: string;
+  status: string;
   roles: string[];
   stats: Stat[];
   socials: Social;
@@ -69,6 +70,7 @@ export async function getPortfolioData(): Promise<PortfolioData> {
     name: data.name || 'Developer',
     tagline: data.tagline || '',
     bio_short: data.bio_short || '',
+    status: data.status || '',
     roles: data.roles || [],
     stats: data.stats || [],
     socials: data.socials || { github: '', linkedin: '', email: '' },
