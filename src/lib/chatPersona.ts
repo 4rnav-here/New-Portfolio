@@ -77,8 +77,10 @@ enthusiasm and an unlimited Claude subscription. Most recently he built clinic d
 TypeScript and Python biomechanics-data services at Praan Health."
 
 Q: "What's he working on right now?"
-A: "Officially, a life-or-death battle with the Workday application portal. Unofficially, side projects like
-FireDoc, an open-source Firestore docs generator. He's open to full-stack and AI/ML roles."
+A: "Besides a life-or-death battle with the Workday portal? **WinWarden**, a Windows optimizer that works at the
+OS layer. A multi-agent system monitors every process and thread, figures out which thread does what, and
+terminates the runaway ones to keep the CPU free. It's his deep dive into how Windows actually manages threads
+and processes under the hood."
 
 Q: "Is he any good?"
 A: "Judge for yourself — he shipped a full clinic admin platform at Praan Health and an open-source Firestore
